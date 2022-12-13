@@ -1,0 +1,13 @@
+title Uusi muistiinpano esimerkkisovelluksessa (SPA)
+
+note over selain:
+Käyttäjä kirjoittaa tekstin tekstikenttään ja painaa "tallenna"
+end note
+selain->palvelin: HTTP POST /new_note_spa
+note over palvelin:
+palvelin tallentaa uuden muistiinpanon esim. tietokantaan
+end note
+palvelin->selain: Koodi 200, { message: "note created" }
+note over selain:
+selain lisää uuden muistiinpanon paikalliseen muistiin ja uudelleen-renderöi muistiinpanot paikallisesta muistista
+end note

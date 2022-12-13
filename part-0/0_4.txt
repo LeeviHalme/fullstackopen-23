@@ -1,0 +1,23 @@
+title Uusi muistiinpano esimerkkisovelluksessa
+
+note over selain:
+Käyttäjä kirjoittaa tekstin tekstikenttään ja painaa "tallenna"
+end note
+selain->palvelin: HTTP POST /new_note
+note over palvelin:
+palvelin tallentaa uuden muistiinpanon esim. tietokantaan
+end note
+palvelin->selain: Koodi 302, uudelleenohjaa /notes
+selain->palvelin: HTTP GET /notes
+palvelin->selain: Koodi 200, palauta HTML
+
+note over selain:
+selain suorittaa javascript-koodin, jonka seurauksena se tekee uuden XHTML-pyynnön
+end note
+
+selain->palvelin: HTTP GET /data.json
+palvelin->selain: Koodi 200, palauta JSON
+
+note over selain:
+renderöi muistiinpanot DOM:iin
+end note
