@@ -119,6 +119,6 @@ app.use((error, request, response, next) => {
   next(error);
 });
 
-// Start listening on default port 3000
+// Start listening on default port 8080
 const port = process.env.PORT;
 app.listen(port, () => console.log(`listening on http://localhost:${port}`));
