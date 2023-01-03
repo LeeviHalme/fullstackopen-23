@@ -55,7 +55,7 @@ const App = () => {
         setMessage({ text: `Added ${newName}`, error: false });
       } catch (error) {
         console.log("error while adding a person to phonebook", error);
-        setMessage({ text: `Error: ${error.message}`, error: true });
+        setMessage({ text: error.response.data.error, error: true });
       }
     }
   };
