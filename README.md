@@ -4,4 +4,4 @@ Repository for returned submissions for Fullstack Open-course. Started in late 2
 
 ## Structure
 
-Submissions for each specific part can be found in their own directories named `part-*`
+Submissions for each specific part can be found in their own directories named `part-*`. Parts 8 and forward are named `part-*-(topic)`.
