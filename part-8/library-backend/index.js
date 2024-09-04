@@ -144,6 +144,7 @@ const typeDefs = `
     authorCount: Int!
     allBooks(author: String, genre: String): [Book]!
     allAuthors: [Author]!
+    recommendedBooks: [Book]!
   }
 
   type Mutation {
@@ -248,7 +249,7 @@ const resolvers = {
         throw new GraphQLError("Creating the user failed", {
           extensions: {
             code: "BAD_USER_INPUT",
-            invalidArgs: args.username,
+            invalidArgs: args,
             error,
           },
         });
@@ -310,6 +311,19 @@ const resolvers = {
       }
     },
     allAuthors: async () => Author.find(),
+    recommendedBooks: async (_, __, context) => {
+      const currentUser = context.currentUser;
+
+      if (!currentUser) {
+        throw new GraphQLError("Not authenticated", {
+          extensions: {
+            code: "BAD_USER_INPUT",
+          },
+        });
+      }
+
+      return Book.find({ genres: { $in: [currentUser.favoriteGenre] } }).populate("author");
+    },
   },
   Author: {
     bookCount: async root => Book.countDocuments({ author: root._id }),

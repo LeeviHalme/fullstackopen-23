@@ -13,7 +13,7 @@ const Authors = props => {
     return null;
   }
 
-  if (query.loading) {
+  if (query.loading || loading) {
     return "loading...";
   }
 
@@ -52,23 +52,27 @@ const Authors = props => {
         </tbody>
       </table>
       <h2>set birthyear</h2>
-      <form onSubmit={submit}>
-        <select value={selectedAuthor} onChange={onAuthorChange} defaultValue={1}>
-          <option value="1" disabled>
-            Choose a author
-          </option>
-          {query.data.allAuthors.map(a => (
-            <option key={a.name} value={a.name}>
-              {a.name}
+      {props.isLoggedIn ? (
+        <form onSubmit={submit}>
+          <select value={selectedAuthor} onChange={onAuthorChange} defaultValue={1}>
+            <option value="1" disabled>
+              Choose a author
             </option>
-          ))}
-        </select>
-        <div>
-          born
-          <input type="number" value={birthyear} onChange={onBirthyearChange} />
-        </div>
-        <button>update author</button>
-      </form>
+            {query.data.allAuthors.map(a => (
+              <option key={a.name} value={a.name}>
+                {a.name}
+              </option>
+            ))}
+          </select>
+          <div>
+            born
+            <input type="number" value={birthyear} onChange={onBirthyearChange} />
+          </div>
+          <button>update author</button>
+        </form>
+      ) : (
+        <div>login to update author</div>
+      )}
     </div>
   );
 };
