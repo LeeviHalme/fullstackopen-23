@@ -12,6 +12,14 @@ const schema = new mongoose.Schema({
   born: {
     type: Number,
   },
+  // reference all books by this author
+  // (n+1 problem)
+  books: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Book",
+    },
+  ],
 });
 
 schema.plugin(uniqueValidator);
