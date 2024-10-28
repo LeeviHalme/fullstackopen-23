@@ -1,6 +1,7 @@
 import { View, StyleSheet, TextInput, Pressable } from "react-native";
 import { useFormik } from "formik";
 import * as yup from "yup";
+import useSignIn from "../hooks/useSignIn";
 import theme from "../theme";
 import Text from "./Text";
 
@@ -61,6 +62,7 @@ const SignInForm = ({ onSubmit }) => {
         value={formik.values.username}
         onChangeText={formik.handleChange("username")}
         placeholderTextColor={theme.colors.textSecondary}
+        autoCapitalize="none"
         placeholder="Username"
       />
       {formik.touched.username && formik.errors.username && (
@@ -71,6 +73,7 @@ const SignInForm = ({ onSubmit }) => {
           styles.input,
           formik.touched.password && formik.errors.password && styles.errorInput,
         ]}
+        autoCapitalize="none"
         value={formik.values.password}
         onChangeText={formik.handleChange("password")}
         placeholderTextColor={theme.colors.textSecondary}
@@ -92,7 +95,18 @@ const SignInForm = ({ onSubmit }) => {
 };
 
 const SignIn = () => {
-  const onSubmit = values => console.log(values);
+  const [signIn] = useSignIn();
+
+  const onSubmit = async values => {
+    const { username, password } = values;
+
+    try {
+      const { data } = await signIn({ username, password });
+      console.log(data);
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
   return <SignInForm onSubmit={onSubmit} />;
 };
