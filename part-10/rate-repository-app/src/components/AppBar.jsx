@@ -21,12 +21,24 @@ const AppBar = () => {
 
   return (
     <View style={styles.container}>
-      <ScrollView horizontal>
+      <ScrollView
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        contentContainerStyle={{
+          columnGap: 20,
+        }}>
         <AppBarTab to="/">Repositories</AppBarTab>
         {data?.me ? (
-          <AppBarTab onPress={signOut}>Sign Out</AppBarTab>
+          <>
+            <AppBarTab to="/review">Create a review</AppBarTab>
+            <AppBarTab to="/my-reviews">My Reviews</AppBarTab>
+            <AppBarTab onPress={signOut}>Sign Out</AppBarTab>
+          </>
         ) : (
-          <AppBarTab to="/sign-in">Sign In</AppBarTab>
+          <>
+            <AppBarTab to="/sign-in">Sign In</AppBarTab>
+            <AppBarTab to="/sign-up">Sign Up</AppBarTab>
+          </>
         )}
       </ScrollView>
     </View>
