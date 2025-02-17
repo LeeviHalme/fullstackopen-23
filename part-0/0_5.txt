@@ -1,0 +1,15 @@
+title Esimerkkisovellus (SPA)
+
+selain->palvelin: HTTP GET /spa
+palvelin->selain: Koodi 200, palauta HTML
+
+note over selain:
+selain suorittaa javascript-koodin, jonka seurauksena se tekee uuden XHTML-pyynnön
+end note
+
+selain->palvelin: HTTP GET /data.json
+palvelin->selain: Koodi 200, palauta JSON
+
+note over selain:
+renderöi muistiinpanot DOM:iin
+end note
