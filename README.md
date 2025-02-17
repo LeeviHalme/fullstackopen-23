@@ -9,6 +9,7 @@ Submissions for each specific part can be found in their own directories named `
 ### Part 11
 
 https://github.com/LeeviHalme/full-stack-open-pokedex
+
 https://github.com/LeeviHalme/fullstack-ci
 
 ### Part 12
